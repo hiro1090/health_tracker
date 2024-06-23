@@ -1,5 +1,6 @@
 class WeightRecordsController < ApplicationController
-  def index
+
+def index
     @weight_records = WeightRecord.all
 end
 

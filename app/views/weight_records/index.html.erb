@@ -1,0 +1,31 @@
+<h1>Weight Records</h1>
+
+ <table class="table">
+
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Wheight</th>
+      <th>Height</th>
+      <th>BMI</th>
+       <th>Actions</th>
+     </tr>
+  </thead>
+
+  <tbody>
+    <% @weight_records.each do |record|%>
+    <tr>
+      <td><%= record.recorded_at.strftime("%Y-%m-%d")%></td>
+      <td><%= record.weight %></td>
+      <td><%= record.height %></td>
+      <td><%= calculate_bmi(record.weight, record.height) %></td><!--計算式のcalculate_bmiは未定義。現状このまま-->
+      <td>
+        <%= link_to 'Edit', edit_weight_record_path(record), class: 'btn btn-primary' %>
+        <%= link_to 'Delete', weight_record_path(record), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+ </table>
+
+ <%= link_to 'New Weight Record', new_weight_record_path, class: 'btn btn-success' %>
